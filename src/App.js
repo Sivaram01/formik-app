@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import { useHistory } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
+import BasicForm from "./formValidateSchema";
 import './App.css';
+import undraw from "./assests/undraw.svg"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+export default function App(){
+
+  return(
+    <div className="app">
+        
+   
+           <Switch>
+             <Route exact path="/">
+              <Welcome/>
+             </Route>
+           <Route path ="/form">
+             <BasicForm/>
+           </Route>
+           </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+function Welcome(){
+  const history = useHistory();
+  return(
+    <div className="conatiner mt-3">
+        <h1 className="text-center"><span>Formik</span> Validation </h1>
+        <p className="text=muted text-center">(click on below button to Sign-up)</p>
+        <img className=" undraw" src={undraw} alt="" />
+         {/* sign-up page */}
+         <button onClick={()=> {
+           history.push("/form")}} className = " button btn btn-primary">Sign Up
+           </button>
+        </div>
+  )
+}
+
+
